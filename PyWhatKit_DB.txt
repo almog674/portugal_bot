@@ -1,0 +1,25 @@
+Date: 16/9/2022
+Time: 19:44
+Phone Number: +972542141100
+Message: Just a message
+--------------------
+Date: 16/9/2022
+Time: 19:45
+Phone Number: +972542141100
+Message: Just a message
+--------------------
+Date: 16/9/2022
+Time: 19:46
+Phone Number: +972542141100
+Message: Just a message
+--------------------
+Date: 16/9/2022
+Time: 20:5
+Phone Number: +972542141100
+Message: Just a message
+--------------------
+Date: 16/9/2022
+Time: 20:8
+Phone Number: +972502244061
+Message: Just a test of the bot
+--------------------
