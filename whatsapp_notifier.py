@@ -38,6 +38,18 @@ class WhatsappNotifier(INotifier):
 
         self.number_groups[group_name].add(number_to_add)
 
+    def remove_number_from_group(self, number_to_remove: str, group_name: str):
+        """
+        Removes a number from existing group.
+
+        :param number_to_remove: The number of the user.
+        :param group_name: The name of the group the user wants to exit.
+        """
+        if not self.is_group_exists(group_name):
+            print(f"The group {group_name} does not exists.")
+
+        self.number_groups[group_name].remove(number_to_remove)
+
     def is_group_exists(self, group_name: str) -> bool:
         """Checks if a group exists."""
         return self.number_groups.get(group_name)
@@ -45,6 +57,7 @@ class WhatsappNotifier(INotifier):
     def notify(self, message: str, groups_to_notify: List[str]):
         """
         Notify one group or more with a message
+
         :param message: The message we want to send in whatsapp.
         :param groups_to_notify: All the groups we want to notify.
         """
