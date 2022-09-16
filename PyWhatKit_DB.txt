@@ -23,3 +23,13 @@ Time: 20:8
 Phone Number: +972502244061
 Message: Just a test of the bot
 --------------------
+Date: 16/9/2022
+Time: 21:31
+Phone Number: +972542141100
+Message: Just a test of the bot
+--------------------
+Date: 16/9/2022
+Time: 21:32
+Phone Number: +972542141100
+Message: Just a test of the bot
+--------------------

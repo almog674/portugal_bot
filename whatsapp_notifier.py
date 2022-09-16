@@ -1,17 +1,17 @@
 from typing import List, Set
 
 import pywhatkit
-
+import json
 from inotifier import INotifier
-
-PHONE_NUMBER = "+972542141100"
-NOTHING_MESSAGE = "Just a test of the bot"
-FOUND_MESSAGE = "THe bot found something!"
 
 
 class WhatsappNotifier(INotifier):
     def __init__(self, number_groups: dict):
         self.number_groups = number_groups
+
+    def get_all_groups(self) -> str:
+        """Returns all the groups in json format."""
+        return json.dumps(self.number_groups)
 
     def add_number_group(self, numbers_to_add: Set[str], group_name: str):
         """
@@ -62,5 +62,8 @@ class WhatsappNotifier(INotifier):
         :param groups_to_notify: All the groups we want to notify.
         """
         for group in groups_to_notify:
-            for user in group:
-                pywhatkit.sendwhatmsg_instantly(user, NOTHING_MESSAGE)
+            if group in list(self.number_groups.keys()):
+                for user in self.number_groups[group]:
+                    print(user)
+                    pywhatkit.sendwhatmsg_instantly(user, message, tab_close=True
+                                                    )
