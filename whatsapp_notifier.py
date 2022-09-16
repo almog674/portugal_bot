@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Set
 
 import pywhatkit
 
@@ -13,14 +13,17 @@ class WhatsappNotifier(INotifier):
     def __init__(self, number_groups: dict):
         self.number_groups = number_groups
 
-    def add_number_group(self, numbers_to_add: List[str], group_name: str):
+    def add_number_group(self, numbers_to_add: Set[str], group_name: str):
         """
         Adds a group we want to notify to the number groups.
 
-        :param numbers_to_add: List of the numbers we want the groups to contain.
+        :param numbers_to_add: Set of the numbers we want the groups to contain.
         :param group_name: The name of the group.
         """
-        # TODO - Add a validation.
+        if self.is_group_exists(group_name):
+            print(f"The group {group_name} already exists.")
+            return
+
         self.number_groups[group_name] = numbers_to_add
 
     def add_number_to_group(self, number_to_add: str, group_name: str):
@@ -30,13 +33,20 @@ class WhatsappNotifier(INotifier):
         :param number_to_add: The number of the user.
         :param group_name: The name of the group the user wants to join.
         """
-        pass
+        if not self.is_group_exists(group_name):
+            print(f"The group {group_name} does not exists.")
+
+        self.number_groups[group_name].add(number_to_add)
+
+    def is_group_exists(self, group_name: str) -> bool:
+        """Checks if a group exists."""
+        return self.number_groups.get(group_name)
 
     def notify(self, message: str, groups_to_notify: List[str]):
         """
         Notify one group or more with a message
         :param message: The message we want to send in whatsapp.
-        :param groups_to_notify: All teh groups we want to notify.
+        :param groups_to_notify: All the groups we want to notify.
         """
         for group in groups_to_notify:
             for user in group:
