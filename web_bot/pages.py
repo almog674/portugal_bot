@@ -6,7 +6,7 @@ Date: 14/09/2022
 """
 import time
 
-from constants import ElementsIDs
+from web_bot.constants import ElementsIDs
 from web_scapper import AgamdamentosBot
 from selenium import webdriver
 

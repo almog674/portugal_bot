@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-from constants import ElementsIDs, CONSOLE_PLACE, ORDER_CATEGORY
+from web_bot.constants import ElementsIDs, CONSOLE_PLACE, ORDER_CATEGORY
 
 
 class AgamdamentosBot(webdriver.Chrome):

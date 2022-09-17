@@ -1,8 +1,8 @@
 import time
 
-from constants import ElementsIDs, URL, Credentials
-from pages import handle_welcome_page
-from web_scapper import AgamdamentosBot
+from web_bot.constants import ElementsIDs, URL, Credentials
+from web_bot.pages import handle_welcome_page
+from web_bot.web_scapper import AgamdamentosBot
 from selenium.webdriver.common.keys import Keys
 
 
