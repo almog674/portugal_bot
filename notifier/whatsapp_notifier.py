@@ -63,7 +63,19 @@ class WhatsappNotifier(INotifier):
         """
         for group in groups_to_notify:
             if group in list(self.number_groups.keys()):
-                for user in self.number_groups[group]:
-                    print(user)
-                    pywhatkit.sendwhatmsg_instantly(user, message, tab_close=True
-                                                    )
+                self.notify_group(group, message)
+
+    def notify_everyone(self, message: str):
+        """
+        Notify one group or more with a message
+
+        :param message: The message we want to send in whatsapp.
+        """
+        for group in self.number_groups:
+            self.notify_group(group, message)
+
+    def notify_group(self, group_name: str, message: str):
+        """Notify a group with a message."""
+        for user in self.number_groups[group_name]:
+            print(user)
+            pywhatkit.sendwhatmsg_instantly(user, message, tab_close=True)

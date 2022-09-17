@@ -1,32 +1,16 @@
-import time
-
-from web_bot.constants import ElementsIDs, URL, Credentials
-from web_bot.pages import handle_welcome_page
+from constants import PHONE_NUMBER, USER_TO_NOTIFY, MINUTES_BETWEEN_MONITORING
+from monitor.agandamentos_monitor import AgandamentosMonitor
+from notifier.whatsapp_notifier import WhatsappNotifier
 from web_bot.web_scapper import AgamdamentosBot
-from selenium.webdriver.common.keys import Keys
 
 
 def main():
+    groups = {USER_TO_NOTIFY: [PHONE_NUMBER], "roee": ["+97222222"]}
+    my_notifier = WhatsappNotifier(groups)
+
     bot = AgamdamentosBot()
-    bot.open_web_page(URL)
-
-    bot.wait_for_page(10)
-    handle_welcome_page(bot)
-
-    bot.wait_for_page()
-    bot.write_in_input(ElementsIDs.ID_NUMBER_INPUT, Credentials.ID_NUMBER)
-    bot.write_in_input(ElementsIDs.DATE_INPUT, Credentials.BIRTH_DATE)
-
-    bot.find_element_by_css_selector('button[id*="searchIcon"]').click()
-    bot.select_tel_aviv()
-    bot.fill_order_type_form()
-    time.sleep(2)
-    bot.submit_checking()
-
-    time.sleep(1000)
-    bot.quit()
-
-    print()
+    monitor = AgandamentosMonitor(bot, my_notifier, MINUTES_BETWEEN_MONITORING)
+    monitor.monitor()
 
 
 if __name__ == '__main__':

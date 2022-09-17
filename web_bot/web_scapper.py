@@ -1,7 +1,4 @@
-import time
-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 from web_bot.constants import ElementsIDs, CONSOLE_PLACE, ORDER_CATEGORY
 
@@ -77,3 +74,6 @@ class AgamdamentosBot(webdriver.Chrome):
         :param time_to_wait: The time in seconds we want to wait.
         """
         self.implicitly_wait(time_to_wait)
+
+    def check_if_available(self) -> bool:
+        return False
